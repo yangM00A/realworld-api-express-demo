@@ -21,6 +21,11 @@ app.use(cors())
 // 中间件-router
 app.use("/api",router)
 
+// 中间件-异常处理
+app.use((err,req,res,next)=>{
+    res.send(err.message)
+})
+
 
 app.listen(conf.PORT, () => {
     const addr = `http://localhost:${conf.PORT}`
