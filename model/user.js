@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const baseModel = require('./base-model')
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -21,15 +22,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
-    }
-
+    ...baseModel
 })
 
 
