@@ -17,3 +17,10 @@ db.once('open', function() {
 
 // const kitty = new Cat({ name: 'Zildjian' });
 // kitty.save().then(() => console.log('meow'));
+
+
+// 导出组织模型
+
+module.exports = {
+    User: mongoose.model('User', require('./user'))
+}

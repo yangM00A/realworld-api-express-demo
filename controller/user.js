@@ -1,10 +1,15 @@
+const { User } = require('../model')
 // 登录
 exports.userLogin = async (req, res, next) => {
     try {
         console.log(req.body);
         // 数据验证
-
-        res.send("post /users/login")
+        // 保存数据
+        const user = new User(req.body.user)
+        await user.save()
+        res.status(201).json({
+            user
+        })
     } catch (error) {
         next(error)
     }
