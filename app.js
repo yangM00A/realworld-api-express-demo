@@ -7,6 +7,8 @@ const router = require('./router')
 const conf = require('./config/config.default')
 const errorHandler = require('./middleware/error-handler')
 
+require("./model")
+
 const app = express()
 
 // 中间件--请求数据处理

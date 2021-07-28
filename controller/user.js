@@ -1,6 +1,9 @@
 // 登录
 exports.userLogin = async (req, res, next) => {
     try {
+        console.log(req.body);
+        // 数据验证
+
         res.send("post /users/login")
     } catch (error) {
         next(error)
