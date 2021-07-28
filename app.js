@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const router = require('./router')
 const conf = require('./config/config.default')
+const errorHandler = require('./middleware/error-handler')
 
 const app = express()
 
@@ -22,9 +23,7 @@ app.use(cors())
 app.use("/api",router)
 
 // 中间件-异常处理
-app.use((err,req,res,next)=>{
-    res.send(err.message)
-})
+app.use(errorHandler())
 
 
 app.listen(conf.PORT, () => {
