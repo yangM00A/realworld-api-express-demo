@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 const router = require('./router')
+const conf = require('./config/config.default')
 
 const app = express()
 
@@ -21,8 +22,7 @@ app.use(cors())
 app.use("/api",router)
 
 
-const PORT = 3000
-app.listen(PORT, () => {
-    const addr = `http://localhost:${PORT}`
+app.listen(conf.PORT, () => {
+    const addr = `http://localhost:${conf.PORT}`
     console.log(`启动成功 访问地址 ${chalk.green(addr)}`);
 })
