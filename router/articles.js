@@ -18,8 +18,14 @@ router.put("/:slug", articlesController.updataArticle)
 // 删除文章
 router.delete("/:slug", articlesController.deleteArticle)
 
-// 给文章添加comments
+// 给文章添加评论
 router.post("/:slug/comments", articlesController.addArticleCommon)
+
+// 获取评论列表
+router.get("/:slug/comments", articlesController.getArticleCommon)
+
+// 删除评论
+router.delete("/:slug/comments/:id", articlesController.deleteArticleCommon)
 
 
 

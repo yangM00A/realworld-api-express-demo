@@ -50,3 +50,19 @@ exports.addArticleCommon = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.getArticleCommon = async (req, res, next) => {
+    try {
+        res.send("get /api/articles/:slug/comments")
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.deleteArticleCommon = async (req, res, next) => {
+    try {
+        res.send("delete /api/articles/:slug/comments/:id")
+    } catch (error) {
+        next(error)
+    }
+}
