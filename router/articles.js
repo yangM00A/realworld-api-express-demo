@@ -1,9 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const articlesController = require('../controller/articles')
+const auth = require('../middleware/auth')
 
 // 文章列表
-router.get("/", articlesController.getArticlesList)
+router.get("/", auth, articlesController.getArticlesList)
 
 // 获取文章
 router.get("/:slug", articlesController.getArticle)
