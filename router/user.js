@@ -7,11 +7,11 @@ const validator = require("../validator/user")
 
 // 登录
 router.post('/users/login',
-    validator.register,
+    validator.login,
     userController.userLogin)
 
 // 注册
-router.post('/users', userController.userRegister)
+router.post('/users',validator.register, userController.userRegister)
 
 // 获取当前登录用户
 router.get('/user', userController.getLoginerInfo)

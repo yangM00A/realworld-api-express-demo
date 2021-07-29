@@ -2,14 +2,7 @@ const { User } = require('../model')
 // 登录
 exports.userLogin = async (req, res, next) => {
     try {
-        console.log(req.body);
-        // 数据验证
-        // 保存数据
-        const user = new User(req.body.user)
-        await user.save()
-        res.status(201).json({
-            user
-        })
+        res.send("login")
     } catch (error) {
         next(error)
     }
@@ -18,7 +11,14 @@ exports.userLogin = async (req, res, next) => {
 // 注册
 exports.userRegister = async (req, res, next) => {
     try {
-        res.send("post /users")
+        console.log(req.body);
+        // 数据验证
+        // 保存数据
+        const user = new User(req.body.user)
+        await user.save()
+        res.status(201).json({
+            user
+        })
     } catch (error) {
         next(error)
     }
