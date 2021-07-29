@@ -1,6 +1,8 @@
 const { User } = require('../model')
 const jwt = require('../util/jwt')
 const { jwtSecret } = require('../config/config.default')
+
+
 // 登录
 exports.userLogin = async (req, res, next) => {
     try {
@@ -18,10 +20,8 @@ exports.userLogin = async (req, res, next) => {
 // 注册
 exports.userRegister = async (req, res, next) => {
     try {
-        console.log(req.body);
-        // 数据验证
         // 保存数据
-        const user = new User(req.body.user)
+        const user = User(req.body.user)
         await user.save()
         res.status(201).json({
             user
@@ -34,7 +34,7 @@ exports.userRegister = async (req, res, next) => {
 // 获取当前登录用户
 exports.getLoginerInfo = async (req, res, next) => {
     try {
-        res.send("get /user")
+        res.json(req.user)
     } catch (error) {
         next(error)
     }

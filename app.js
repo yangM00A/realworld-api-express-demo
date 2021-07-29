@@ -7,7 +7,6 @@ const router = require('./router')
 const conf = require('./config/config.default')
 const errorHandler = require('./middleware/error-handler')
 
-require("./model")
 
 const app = express()
 
