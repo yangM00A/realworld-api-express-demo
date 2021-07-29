@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        set: value => md5(value) //密码入库的时候直接MD5加密
+        set: value => md5(value), //密码入库的时候直接MD5加密
+        select: false //查询时过滤掉password
     },
     bio: {
         type: String,
