@@ -1,9 +1,9 @@
-# 这个是跟随B站上的一个学习项目 express + MongoDB   
+# 这个是跟随B站上的一个学习项目 express + MongoDB   **未完待续**
 
 
 ## 用前须知  *以我使用的为主*
 
-1. 安装nodejs *v10.13.0*
+1. nodejs *v10.13.0*
 2. MongoDB *v3.2.0*
 3. supervisor
 
