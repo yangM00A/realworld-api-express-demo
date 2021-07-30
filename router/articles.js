@@ -8,7 +8,7 @@ const validatorArticles = require('../validator/articles')
 router.get("/", articlesController.getArticlesList)
 
 // 获取文章
-router.get("/:articleId", articlesController.getArticle)
+router.get("/:articleId", validatorArticles.articleId, articlesController.getArticle)
 
 // 添加文章
 router.post("/", auth, validatorArticles.create, articlesController.addArticle)
