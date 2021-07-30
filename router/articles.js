@@ -8,25 +8,25 @@ const validatorArticles = require('../validator/articles')
 router.get("/", articlesController.getArticlesList)
 
 // 获取文章
-router.get("/:slug", articlesController.getArticle)
+router.get("/:articleId", articlesController.getArticle)
 
 // 添加文章
 router.post("/", auth, validatorArticles.create, articlesController.addArticle)
 
 // 更新文章
-router.put("/:slug", articlesController.updataArticle)
+router.put("/:articleId", articlesController.updataArticle)
 
 // 删除文章
-router.delete("/:slug", articlesController.deleteArticle)
+router.delete("/:articleId", articlesController.deleteArticle)
 
 // 给文章添加评论
-router.post("/:slug/comments", articlesController.addArticleCommon)
+router.post("/:articleId/comments", articlesController.addArticleCommon)
 
 // 获取评论列表
-router.get("/:slug/comments", articlesController.getArticleCommon)
+router.get("/:articleId/comments", articlesController.getArticleCommon)
 
 // 删除评论
-router.delete("/:slug/comments/:id", articlesController.deleteArticleCommon)
+router.delete("/:articleId/comments/:id", articlesController.deleteArticleCommon)
 
 
 

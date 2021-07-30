@@ -8,10 +8,16 @@ exports.getArticlesList = async (req, res, next) => {
     }
 }
 
-
+// 根据文章id查询文章
 exports.getArticle = async (req, res, next) => {
     try {
-        res.send("get /api/articles/:slug")
+        // populate 顺便查询出作者
+        const article = await Articles.findById(req.params.articleId).populate('author')
+        if (article) {
+            res.status(201).json(article)
+        } else {
+            res.status(404).end()
+        }
     } catch (error) {
         next(error)
     }
