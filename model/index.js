@@ -22,5 +22,6 @@ db.once('open', function() {
 // 导出组织模型
 
 module.exports = {
-    User: mongoose.model('User', require('./user'))
+    User: mongoose.model('User', require('./user')),
+    Articles: mongoose.model('Articles', require('./articles'))
 }

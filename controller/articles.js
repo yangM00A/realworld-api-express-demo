@@ -1,3 +1,5 @@
+const { Articles } = require('../model')
+
 exports.getArticlesList = async (req, res, next) => {
     try {
         res.send("get /api/articles")
@@ -15,10 +17,13 @@ exports.getArticle = async (req, res, next) => {
     }
 }
 
-
+// 保存文章
 exports.addArticle = async (req, res, next) => {
     try {
-        res.send("post /api/articles")
+        const articles = new Articles(req.body.article)
+        articles.author = req.user
+        await articles.save()
+        res.status(201).json(articles)
     } catch (error) {
         next(error)
     }

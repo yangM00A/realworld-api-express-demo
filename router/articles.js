@@ -2,15 +2,16 @@ const express = require("express")
 const router = express.Router()
 const articlesController = require('../controller/articles')
 const auth = require('../middleware/auth')
+const validatorArticles = require('../validator/articles')
 
 // 文章列表
-router.get("/", auth, articlesController.getArticlesList)
+router.get("/", articlesController.getArticlesList)
 
 // 获取文章
 router.get("/:slug", articlesController.getArticle)
 
 // 添加文章
-router.post("/", articlesController.addArticle)
+router.post("/", auth, validatorArticles.create, articlesController.addArticle)
 
 // 更新文章
 router.put("/:slug", articlesController.updataArticle)

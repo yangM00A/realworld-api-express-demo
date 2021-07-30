@@ -21,7 +21,7 @@ exports.userLogin = async (req, res, next) => {
 exports.userRegister = async (req, res, next) => {
     try {
         // 保存数据
-        const user = User(req.body.user)
+        const user = new User(req.body.user)
         await user.save()
         res.status(201).json({
             user
