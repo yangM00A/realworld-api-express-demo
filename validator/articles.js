@@ -30,13 +30,13 @@ exports.updateArticle = [
         validatorHandle.isValidObjecId('params', 'articleId')
     ]),
     async (req, res, next) => {
-            const articleId = req.params.articleId
-            const article = await Articles.findById(articleId)
-            req.article = article
-            if (!article) {
-                res.status(404).end()
-            }
+        const articleId = req.params.articleId
+        const article = await Articles.findById(articleId)
+        req.article = article
+        if (article) {
             next()
+        }
+        res.status(404).end()
     },
     async (req, res, next) => {
         if (req.user._id.toString() != req.article.author.toString()) {
@@ -45,3 +45,5 @@ exports.updateArticle = [
         next()
     },
 ]
+
+exports.deleteArticle = exports.updateArticle
