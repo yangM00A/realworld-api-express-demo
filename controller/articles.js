@@ -1,8 +1,26 @@
-const { Articles } = require('../model')
+const { Articles, User } = require('../model')
 
 exports.getArticlesList = async (req, res, next) => {
     try {
-        res.send("get /api/articles")
+        const { limit = 20, offset = 0, tag, author } = req.query
+        //skip: 跳过的条数
+        //limit: 查询的条数
+        // sort： -1 倒序，1：正序
+        const tagObj = {}
+        if (tag) {
+            // 标签条件
+            tagObj.tagList = tag
+        }
+
+        // 作者
+        if (author) {
+            const user = await User.findOne({ username: author })
+            if (user) {
+                tagObj.author = user._id
+            }
+        }
+        const articlesList = await Articles.find(tagObj).skip(Number.parseInt(offset)).limit(Number.parseInt(limit)).sort({ createdAt: -1 })
+        res.status(201).json(articlesList)
     } catch (error) {
         next(error)
     }

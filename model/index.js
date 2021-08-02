@@ -4,7 +4,7 @@ const config = require('../config/config.default')
 
 mongoose.connect(config.mongoDB);
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', err => {
     console.log('mongoDB数据库连接失败 ', err);
