@@ -19,5 +19,9 @@ exports.articleId = validatorHandle([
         }
         return Promise.reject('文章id类型错误')
     })
+])
 
+// 校验文章id类型
+exports.updateArticle = validatorHandle([
+    validatorHandle.isValidObjecId('params', 'articleId')
 ])
