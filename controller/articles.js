@@ -75,7 +75,9 @@ exports.updataArticle = async (req, res, next) => {
 
 exports.deleteArticle = async (req, res, next) => {
     try {
-        res.send("delete /api/articles/:slug")
+        const article = req.article
+        article.remove()
+        res.status(204).end()
     } catch (error) {
         next(error)
     }

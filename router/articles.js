@@ -17,7 +17,7 @@ router.post("/", auth, validatorArticles.create, articlesController.addArticle)
 router.put("/:articleId", auth, validatorArticles.updateArticle, articlesController.updataArticle)
 
 // 删除文章
-router.delete("/:articleId", articlesController.deleteArticle)
+router.delete("/:articleId", auth, validatorArticles.deleteArticle, articlesController.deleteArticle)
 
 // 给文章添加评论
 router.post("/:articleId/comments", articlesController.addArticleCommon)
