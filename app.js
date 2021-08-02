@@ -2,6 +2,7 @@ const express = require('express')
 const chalk = require('chalk')
 const morgan = require('morgan')
 const cors = require('cors')
+const path = require('path')
 
 const router = require('./router')
 const conf = require('./config/config.default')
@@ -9,6 +10,16 @@ const errorHandler = require('./middleware/error-handler')
 
 
 const app = express()
+
+// art-template
+app.engine('art', require('express-art-template'));
+app.set('view options', { debug: process.env.NODE_ENV !== 'production' });
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'art');
+
+
+// 静态资源处理
+app.use("/static", express.static(path.join(__dirname, './static')))
 
 // 中间件--请求数据处理
 app.use(express.json())
