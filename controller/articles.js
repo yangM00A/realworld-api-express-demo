@@ -53,10 +53,20 @@ exports.addArticle = async (req, res, next) => {
     }
 }
 
-
+// 更新文章
 exports.updataArticle = async (req, res, next) => {
     try {
-        res.send("put /api/articles/:slug")
+        // 数据库查询出的article
+        const article = req.article
+        // article参数
+        const bodyArticle = req.body.article
+        // 合并
+        article.title = bodyArticle.title || article.title;
+        article.description = bodyArticle.description || article.description;
+        article.body = bodyArticle.body || article.body;
+        // 保存
+        article.save()
+        res.json(article)
     } catch (error) {
         next(error)
     }

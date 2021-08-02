@@ -1,6 +1,7 @@
 const { body, param } = require('express-validator')
 const mongoose = require('mongoose')
 const validatorHandle = require('../middleware/validator')
+const { Articles } = require('../model')
 
 
 // 添加文章校验
@@ -22,6 +23,25 @@ exports.articleId = validatorHandle([
 ])
 
 // 校验文章id类型
-exports.updateArticle = validatorHandle([
-    validatorHandle.isValidObjecId('params', 'articleId')
-])
+// 校验文章是否存在
+// 验证文章作者是当前登录用户
+exports.updateArticle = [
+    validatorHandle([
+        validatorHandle.isValidObjecId('params', 'articleId')
+    ]),
+    async (req, res, next) => {
+            const articleId = req.params.articleId
+            const article = await Articles.findById(articleId)
+            req.article = article
+            if (!article) {
+                res.status(404).end()
+            }
+            next()
+    },
+    async (req, res, next) => {
+        if (req.user._id.toString() != req.article.author.toString()) {
+            res.status(403).end()
+        }
+        next()
+    },
+]
