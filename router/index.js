@@ -17,7 +17,4 @@ router.use("/articles", articles)
 // 标签路由
 router.use("/tags", tags)
 
-// 页面路由
-router.use('/views',viewRouter)
-
 module.exports = router

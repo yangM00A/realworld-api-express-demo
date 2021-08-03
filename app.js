@@ -7,6 +7,7 @@ const path = require('path')
 const router = require('./router')
 const conf = require('./config/config.default')
 const errorHandler = require('./middleware/error-handler')
+const {viewRouter} = require('./router/views')
 
 
 const app = express()
@@ -20,6 +21,7 @@ app.set('view engine', 'art');
 
 // 静态资源处理
 app.use("/static", express.static(path.join(__dirname, './static')))
+app.use("/node_modules", express.static(path.join(__dirname, './node_modules')))
 
 // 中间件--请求数据处理
 app.use(express.json())
@@ -31,7 +33,10 @@ app.use(morgan('dev'))
 // 中间件-跨域处理
 app.use(cors())
 
-// 中间件-router
+// 页面路由
+app.use(viewRouter)
+
+// 中间件-router 一般是api接口
 app.use("/api",router)
 
 // 中间件-异常处理
