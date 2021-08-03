@@ -1,14 +1,4 @@
-const mongoose = require('mongoose')
-const config = require('../config/config.default')
-
-
-mongoose.connect(config.mongoDB);
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log('mongoDB数据库连接成功');
-});
+const {mongoose} = require('./mongConn')
 
 // 1.创建schema
 const personSchema = mongoose.Schema({
@@ -26,4 +16,4 @@ let obj = {
 }
 const person = new PersonModel(obj)
 
-person.save()
+console.log(person.save());
