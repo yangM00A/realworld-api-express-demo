@@ -26,3 +26,8 @@ node app.js
 4. jsonwebtoken *JWT 生成token*
 5. mongoose *连接MongoDB*
 6. morgan *日志中间件*
+7. express-art-template、art-template *模板引擎*
+
+
+## 参考页面
+http://demo.realworld.io/#/
